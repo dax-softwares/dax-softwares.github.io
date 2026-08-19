@@ -1,0 +1,148 @@
+/* DAX — fundamentos: reset, tipografia, animações, nav, botões, rodapé */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  color: #0B1F3A;
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: #5B4BFF; text-decoration: none; }
+a:hover { color: #23C16B; }
+::selection { background: #5B4BFF; color: #fff; }
+
+img, svg { max-width: 100%; }
+
+.page { width: 100%; overflow-x: hidden; background: #FFFFFF; }
+
+@keyframes daxFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes daxRise  { 0% { transform: scaleY(0.15); } 100% { transform: scaleY(1); } }
+@keyframes daxPulse { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* Wordmark */
+
+.wordmark {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #0B1F3A;
+}
+.wordmark .x {
+  background: linear-gradient(135deg, #5B4BFF 0%, #23C16B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.wordmark--nav { font-size: 26px; }
+.wordmark--legal { font-size: 24px; }
+.wordmark--footer { font-size: 24px; color: #fff; }
+a.wordmark:hover { color: #0B1F3A; }
+
+/* Nav */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.82);
+  border-bottom: 1px solid #EAEDF2;
+}
+.site-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-nav--legal { max-width: 1120px; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-link { color: #334155; font-size: 15px; font-weight: 500; }
+.nav-link:hover { color: #5B4BFF; }
+
+/* Botões */
+
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: background .2s;
+}
+.btn-dark { background: #0B1F3A; color: #fff; }
+.btn-dark:hover { background: #5B4BFF; color: #fff; }
+.btn-primary { background: #5B4BFF; color: #fff; }
+.btn-primary:hover { background: #4338CA; color: #fff; }
+.btn-nav { font-size: 14px; padding: 11px 20px; border-radius: 10px; }
+.btn-lg { font-size: 16px; padding: 16px 32px; }
+.btn-cta { font-size: 16px; padding: 16px 34px; }
+
+/* Rodapé (compartilhado por todas as páginas) */
+
+.site-footer { background: #0B1F3A; color: #94A3B8; }
+.footer-heading {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.footer-link { color: #94A3B8; font-size: 14px; }
+.footer-link:hover { color: #fff; }
+.footer-link--current { color: #fff; font-weight: 500; }
+.footer-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 32px 40px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand-mark { display: block; margin-bottom: 16px; }
+.footer-brand-desc { font-size: 14px; line-height: 1.6; color: #94A3B8; margin: 0; max-width: 320px; }
+.footer-col-links { display: flex; flex-direction: column; gap: 11px; }
+.footer-company {
+  border-top: 1px solid #1C3355;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 26px 32px 4px;
+}
+.footer-company .footer-heading { margin-bottom: 10px; }
+.footer-company p { font-size: 13px; line-height: 1.65; color: #64748B; margin: 0; max-width: 720px; }
+.footer-bottom {
+  border-top: 1px solid #1C3355;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 22px 32px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-bottom span { font-size: 13px; color: #64748B; }
+
+/* Responsivo (nav + rodapé) */
+
+@media (max-width: 960px) {
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px 40px; padding: 48px 32px 36px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-brand-desc { max-width: none; }
+}
+
+@media (max-width: 600px) {
+  .site-nav { padding: 14px 20px; }
+  .nav-links .nav-link { display: none; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; padding: 44px 20px 32px; }
+  .footer-company { padding: 26px 20px 4px; }
+  .footer-bottom { padding: 22px 20px; }
+}
